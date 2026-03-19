@@ -66,25 +66,8 @@ tts_enabled = false  # 是否启用字幕音频合成
 # Agent & LLM 配置
 # ============================================================================
 [agent]
-name = "ytb2bili_agent"  # Agent 名称
+name = "agent"  # Agent 名称
 
-[agent.llm]
-# provider = "openai"                      # LLM 提供商: openai, deepseek, openrouter 等
-# api_key = "sk-proj--"            # LLM API 密钥（必需）
-# model = "gpt-4"                          # 使用的模型名称
-# base_url = "https://api.openai.com/v1"  # 自定义 API 地址（可选）
-
-# OpenRouter 示例
-# provider = "openrouter"
-# api_key = "sk-or-v1-..."
-# base_url = "https://openrouter.ai/api/v1"
-# model = "anthropic/claude-3-sonnet"
-
-# DeepSeek 示例
-provider = "deepseek"
-api_key = "sk"
-base_url = "https://api.deepseek.com/v1"
-model = "deepseek-chat"
 
 # ============================================================================
 # 自动更新配置
@@ -96,13 +79,7 @@ check_interval = 24    # 检查更新间隔（小时），0 表示禁用
 # update_url = "https://api.github.com/repos/zolagz/ytb2bili/releases/latest"
 # current_version = "0.0.1"
 
-# ============================================================================
-# TTS 服务配置（可选，用于语音合成）
-# ============================================================================
-[tts]
-# base_url = "https://tts-api.com"
-# app_id = "your_app_id"
-# app_secret = "your_app_secret"
+
 
 # ============================================================================
 # 腾讯云 COS 存储配置（可选，用于云端存储）
