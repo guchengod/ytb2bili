@@ -1,549 +1,233 @@
-# YTB2BILI - YouTube 到 Bilibili 全自动转载系统
+# ytb2bili
 
-<div align="center">
+`ytb2bili` 是一个面向 YouTube 到 Bilibili 的视频搬运与处理系统，提供 Web 管理后台、任务链编排、字幕处理、AI 文案生成、B 站上传、字幕上传等完整能力。
 
-[![Go Version](https://img.shields.io/badge/Go-1.24+-00ADD8?style=flat&logo=go)](https://golang.org/)
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat&logo=next.js)](https://nextjs.org/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/difyz9/ytb2bili)](https://hub.docker.com/r/difyz9/ytb2bili)
-[![Platforms](https://img.shields.io/badge/platform-linux%2Famd64%20%7C%20linux%2Farm64-blue)](https://hub.docker.com/r/difyz9/ytb2bili)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat)](LICENSE)
+## 5 分钟 Docker 部署
 
-**一个全自动化的视频搬运系统，从下载、字幕生成、AI翻译到定时发布的完整解决方案**
+如果你是想直接把 `ytb2bili` 服务跑起来，推荐先用 Docker Compose。默认会启动两个服务：
 
-[功能特性](#-核心功能) • [一键部署](#-一键部署docker-推荐) • [配置说明](#️-配置说明) • [使用指南](#-使用指南) • [技术架构](#-技术架构)
+- `mysql`：持久化任务、账号和运行数据
+- `ytb2bili`：Web 管理后台和搬运服务
 
-</div>
+### 1. 准备环境
 
----
+先确认机器上已经安装：
 
-## 🎯 项目简介
+- Docker
+- Docker Compose
 
-**YTB2BILI** 是一个专为内容创作者打造的智能视频搬运工具。通过整合 **yt-dlp**、**Whisper AI**、**DeepSeek/Gemini** 等先进技术，实现从 YouTube/TikTok 等平台到 Bilibili 的**零人工介入**全流程自动化。
-
-### 🌟 核心亮点
-
-- ✅ **完全自动化** - 从下载到发布，仅需提供视频链接
-- 🧠 **AI 驱动** - 智能字幕生成、多语言翻译、元数据优化
-- ⚡ **定时发布** - 智能调度避免频控，支持每小时自动上传
-- 🔄 **失败重试** - 任务级精细化控制，支持单步骤重试
-- 📊 **可视化管理** - 现代化 Web 管理界面，实时监控任务状态
-- 🐳 **Docker 一键部署** - 预构建镜像，开箱即用，支持 amd64 / arm64
-
----
-
-## ✨ 核心功能
-
-### 🎬 智能任务链处理引擎
-
-系统采用**责任链模式**，将视频处理拆解为独立任务步骤：
-
-```
-📥 下载视频  →  🎤 提取音频  →  📝 生成字幕  →  🌐 翻译字幕
-     →  📷 下载封面  →  🤖 生成元数据  →  📤 上传B站  →  📝 上传字幕
-```
-
-每个步骤支持独立执行、失败重试，状态实时可查。
-
-#### 📥 视频下载 (`yt-dlp`)
-- 支持 **YouTube、TikTok、Twitter** 等 1000+ 平台
-- 自动选择最高清晰度（支持 4K）
-- 智能元数据提取（标题、描述、标签、播放量等）
-
-#### 🎤 字幕生成 (`Whisper AI`)
-- **本地离线生成**，无需依赖第三方 API
-- 支持 90+ 种语言自动识别
-- 生成带时间轴的 SRT 格式字幕
-
-#### 🌐 智能翻译（多引擎）
-- **DeepSeek** - 高质量 AI 翻译，上下文理解强，价格低廉
-- **OpenAI** - GPT 系列模型
-- **兼容 OpenAI 接口** - OpenRouter / 本地 Ollama 等均可接入
-
-#### 🤖 元数据生成（AI）
-- **标题优化** - 符合 B站 SEO，提升推荐率
-- **简介生成** - 自动总结视频内容，添加关键词
-- **标签提取** - 分析视频内容，生成相关话题标签
-
-#### 📤 Bilibili 上传
-- 大文件分片上传，支持 GB 级视频稳定上传
-- 可选腾讯云 COS 加速
-- 自动投稿，配置版权、分区、封面等
-- 视频发布后自动追加多语言 CC 字幕
-
----
-
-## 🚀 一键部署（Docker 推荐）
-
-> **镜像已预装** yt-dlp、FFmpeg、Whisper，无需额外安装任何依赖，5 分钟即可完成部署。
-
-### 第一步：准备配置文件
-
-新建工作目录并获取配置文件（二选一）：
-
-**方式 A：直接下载（无需克隆整个仓库）**
+### 2. 获取部署文件
 
 ```bash
-mkdir ytb2bili && cd ytb2bili
-
-curl -fsSL https://raw.githubusercontent.com/difyz9/ytb2bili-docker/main/config.toml \
-     -o config.toml
-
-curl -fsSL https://raw.githubusercontent.com/difyz9/ytb2bili-docker/main/docker-compose.yml \
-     -o docker-compose.yml
-```
-
-**方式 B：克隆本仓库后使用 `docker/` 目录下的文件**
-
-```bash
-git clone https://github.com/difyz9/ytb2bili.git
-cd ytb2bili/docker
+git clone https://github.com/difyz9/ytb2bili-docker.git
+cd ytb2bili-docker
 cp config.toml.example config.toml
 ```
 
----
+### 3. 使用最小配置启动
 
-### 第二步：修改 `config.toml`
+默认情况下，`[database]` 配置已经和 `docker-compose.yml` 对齐，通常不用改。至少保留下面这段：
 
-> 数据库部分**无需改动**，默认已与 `docker-compose.yml` 保持一致。
+```toml
+[server]
+host = "0.0.0.0"
+port = 8096
+static_dir = "./downloads"
+static_path = "/static"
 
-打开 `config.toml`，**只需配置 LLM 翻译服务**（三选一）：
+[database]
+type = "mysql"
+host = "mysql"
+port = 3306
+user = "ytb2bili"
+password = "ytb2bili@123"
+dbname = "bili_up"
+sslmode = ""
+timezone = "Asia/Shanghai"
+auto_migrate = true
+table_prefix = ""
 
-首先开启翻译开关：
+[workflow]
+download_dir = "./downloads"
+ytdlp_path = "/usr/local/bin/yt-dlp"
+ffmpeg_path = "/usr/bin/ffmpeg"
+```
+
+如果你的网络访问 YouTube 需要代理，再补：
 
 ```toml
 [workflow]
-llm_translation_enabled     = true
-llm_translation_source_lang = "en"        # 原始字幕语言
-llm_translation_target_lang = "zh-Hans"   # 目标语言（简体中文）
-llm_translation_batch_size  = 25          # 每批翻译字幕条数
-llm_translation_max_workers = 3           # 并发翻译协程数
+proxy_url = "http://127.0.0.1:7890"
 ```
 
-然后按需选择 LLM 服务：
-
-**方案 A — DeepSeek（推荐，中文效果好，价格低）**
-
-> 申请 Key：https://platform.deepseek.com
-
-```toml
-[agent.llm]
-provider = "deepseek"
-api_key  = "sk-xxxxxxxxxxxxxxxxxxxxxxxx"
-model    = "deepseek-chat"
-```
-
-**方案 B — OpenAI**
-
-> 申请 Key：https://platform.openai.com
-
-```toml
-[agent.llm]
-provider = "openai"
-api_key  = "sk-xxxxxxxxxxxxxxxxxxxxxxxx"
-model    = "gpt-4o-mini"   # 速度快、价格低；换 gpt-4o 效果更好
-```
-
-**方案 C — 兼容 OpenAI 接口（OpenRouter / 本地 Ollama 等）**
-
-```toml
-# OpenRouter 示例
-[agent.llm]
-provider = "openai"
-api_key  = "sk-or-v1-xxxxxxxxxxxxxxxx"
-base_url = "https://openrouter.ai/api/v1"
-model    = "anthropic/claude-3.5-sonnet"
-```
-
-```toml
-# 本地 Ollama 示例
-[agent.llm]
-provider = "openai"
-api_key  = "ollama"
-base_url = "http://host.docker.internal:11434/v1"
-model    = "qwen2.5:14b"
-```
-
----
-
-### 第三步：启动服务
+### 4. 启动服务
 
 ```bash
 docker compose up -d
-```
-
-首次启动会自动拉取镜像并等待 MySQL 就绪（约 30 秒），可用以下命令查看进度：
-
-```bash
 docker compose logs -f
 ```
 
-启动成功后，访问以下地址：
+服务正常启动后，打开：`http://localhost:8096`
 
-| 服务 | 地址 |
-|------|------|
-| Web 管理后台 | http://localhost:8096 |
-| MySQL（调试用） | localhost:3309 |
+### 5. 开始使用
 
----
+1. 进入后台
+2. 用 B 站 App 扫码登录
+3. 新建任务并粘贴视频链接
+4. 等待系统自动下载、处理并上传
 
-### 第四步：登录 Bilibili 账号
-
-1. 打开 `http://localhost:8096`
-2. 进入 **设置 → B站账号**
-3. 用 **Bilibili App** 扫码完成授权
-4. Cookie 自动保存，后续无需重复登录
-
-> **提示**：Cookie 有效期约 30 天，过期后需重新扫码登录。
-
----
-
-### 第五步：添加搬运任务
-
-1. 进入 **任务 → 新建任务**
-2. 粘贴 YouTube / TikTok 等平台的视频链接
-3. 点击 **创建**，系统自动依次执行：
-   - 下载视频（yt-dlp）
-   - 提取音频，Whisper 生成字幕
-   - LLM 翻译字幕
-   - AI 生成标题 / 简介 / 标签
-   - 上传到 B站并追加字幕
-
----
-
-### 常用命令
+常用命令：
 
 ```bash
-# 查看实时日志
-docker compose logs -f ytb2bili
-
-# 升级到最新版本
-docker compose pull && docker compose up -d
-
-# 停止服务（保留数据）
+docker compose ps
+docker compose restart
 docker compose down
-
-# 彻底清除（含数据库数据）
-docker compose down -v
 ```
 
----
+如果你还需要代理、AI 翻译、升级和排错说明，继续看完整文档：[readme01.md](/Users/apple/opt/difyz_0329/0418/ytb2bili/readme01.md)
 
-## ⚙️ 配置说明
+## ✨ 核心特性
 
-### `docker-compose.yml` 结构
-
-```yaml
-services:
-  mysql:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: your_password
-      MYSQL_DATABASE: bili_up
-      MYSQL_USER: ytb2bili
-      MYSQL_PASSWORD: ytb2bili@123
-    volumes:
-      - ./mysql_data:/var/lib/mysql   # 数据库文件持久化到本地
-    ports:
-      - "3309:3306"                   # 宿主机 3309 → 容器 3306
-
-  ytb2bili:
-    image: difyz9/ytb2bili:latest     # 从 Docker Hub 拉取预构建镜像
-    depends_on:
-      mysql:
-        condition: service_healthy    # 等待 MySQL 健康检查通过
-    ports:
-      - "8096:8096"
-    volumes:
-      - ./config.toml:/app/config.toml   # 挂载配置文件
-      - ./logs:/app/do                   # 日志目录
-      - ./downloads:/app/downloads       # 视频下载目录
-    environment:
-      - TZ=Asia/Shanghai
-```
-
-> 镜像支持 `linux/amd64` 和 `linux/arm64`（Apple Silicon Mac、树莓派 4/5）。
-
----
-
-### 完整 `config.toml` 参考
-
-<details>
-<summary><b>数据库配置</b></summary>
-
-```toml
-[database]
-type     = "mysql"
-host     = "mysql"           # Docker Compose 服务名，无需改动
-port     = 3306
-user     = "ytb2bili"
-password = "ytb2bili@123"
-dbname   = "bili_up"
-timezone = "Asia/Shanghai"
-auto_migrate = true
-```
-
-</details>
-
-<details>
-<summary><b>视频处理工作流</b></summary>
-
-```toml
-[workflow]
-download_dir              = "./downloads"            # 视频下载目录
-ytdlp_path                = "/usr/local/bin/yt-dlp"  # 镜像内已预装
-ffmpeg_path               = "/usr/bin/ffmpeg"         # 镜像内已预装
-
-# 代理（可选，用于访问受限地区视频）
-# proxy_url = "http://127.0.0.1:7890"
-
-# Cookies 文件路径（可选，用于下载需要登录才能看的视频）
-# cookies_file = "/path/to/cookies.txt"
-
-# LLM 翻译
-llm_translation_enabled      = true
-llm_translation_batch_size   = 25
-llm_translation_max_workers  = 3
-llm_translation_context_size = 2
-llm_translation_source_lang  = "en"
-llm_translation_target_lang  = "zh-Hans"
-```
-
-</details>
-
-<details>
-<summary><b>LLM 翻译配置（三选一）</b></summary>
-
-```toml
-# DeepSeek（推荐）
-[agent.llm]
-provider = "deepseek"
-api_key  = "sk-..."
-model    = "deepseek-chat"
-
-# OpenAI
-# [agent.llm]
-# provider = "openai"
-# api_key  = "sk-..."
-# model    = "gpt-4o-mini"
-
-# 自定义兼容接口
-# [agent.llm]
-# provider = "openai"
-# api_key  = "..."
-# base_url = "https://your-endpoint/v1"
-# model    = "your-model"
-```
-
-</details>
-
-<details>
-<summary><b>腾讯云 COS 配置（可选，大文件加速）</b></summary>
-
-```toml
-[tencos]
-enabled        = true
-cos_bucket_url = "https://your-bucket.cos.ap-guangzhou.myqcloud.com"
-cos_secret_id  = "AKIDxxxxxxxx"
-cos_secret_key = "xxxxxxxx"
-cos_region     = "ap-guangzhou"
-cos_bucket     = "your-bucket-name"
-sub_app_id     = "125xxxxxx"
-```
-
-启用 COS 后，上传速度可提升 3-5 倍，支持超大文件（>4GB）分片续传。
-
-</details>
-
-<details>
-<summary><b>自动更新配置</b></summary>
-
-```toml
-[updater]
-enabled        = true
-auto_update    = false   # 建议设为 false，手动执行 docker compose pull 更新
-check_interval = 24      # 检查更新间隔（小时）
-```
-
-</details>
-
----
-
-## 📖 使用指南
-
-### 任务处理流程
-
-系统创建任务后自动执行以下步骤：
-
-```
-1. 📥 下载视频           [约 1-5 分钟]
-2. 🎤 提取音频           [约 10-30 秒]
-3. 📝 Whisper 生成字幕   [约 1-10 分钟，取决于视频长度]
-4. 🌐 LLM 翻译字幕       [约 30 秒-2 分钟]
-5. 📷 下载封面           [约 5-10 秒]
-6. 🤖 AI 生成元数据      [约 20-60 秒]
-7. 📤 上传到 Bilibili    [约 5-30 分钟，取决于视频大小]
-8. 📝 追加 CC 字幕       [约 10-30 秒]
-```
-
-### 失败重试
-
-如果某个步骤失败，在"任务详情"页面找到红色标记的步骤，点击"重试"即可单步重试，无需从头开始。
-
-**常见失败原因**：
-- **下载失败** - 视频已删除或地区限制 → 在配置中添加 `proxy_url`
-- **翻译失败** - API Key 无效或额度耗尽 → 检查 Key 或更换引擎
-- **上传失败** - Cookie 过期 → 重新扫码登录；大文件 → 启用 COS 加速
-
-### 支持的视频平台
-
-通过 yt-dlp 支持 1000+ 平台，常用平台包括：
-
-- YouTube (`youtube.com`, `youtu.be`)
-- TikTok (`tiktok.com`)
-- Twitter / X (`twitter.com`, `x.com`)
-- Instagram (`instagram.com`)
-- [完整平台列表](https://github.com/yt-dlp/yt-dlp/blob/master/supportedsites.md)
-
----
+- **YouTube 到 B 站全流程处理**: 下载视频、提取音频、转录字幕、翻译字幕、生成元数据、上传 B 站
+- **可配置任务链**: 各步骤可以按用户设置启停，前后端对齐执行语义
+- **AI 能力集成**: 支持 AI 翻译、标题/简介/标签生成、字幕音频合成
+- **B 站集成**: 支持扫码登录、视频投稿、字幕上传、账号状态管理
+- **现代 Web 管理后台**: Go 后端 + Next.js 前端，支持任务查看、重跑、手动上传等操作
 
 ## 🏗️ 技术架构
 
-### 后端（Golang）
+项目由三部分组成：
 
-| 组件 | 技术选型 | 用途 |
-|------|---------|------|
-| Web 框架 | Gin | HTTP 路由和中间件 |
-| 依赖注入 | Uber FX | 模块化依赖管理 |
-| ORM | GORM v2 | 支持 MySQL / PostgreSQL |
-| 定时任务 | Robfig Cron v3 | 秒级精度调度器 |
-| 日志系统 | Zap + Lumberjack | 结构化日志与自动轮转 |
-| 认证鉴权 | JWT + Cookie | 双重认证机制 |
+- **处理引擎**: Go 后端负责下载、转录、翻译、元数据生成、B 站上传、字幕上传等任务链执行
+- **管理后台**: Next.js 前端提供任务面板、配置页面、账号管理、手动上传等操作界面
+- **运行支撑**: 通过 `config.toml`、数据库、Docker 部署文件和文档体系支撑本地开发与生产运行
 
-**核心模块**：
-- `internal/chain_task` - 任务链处理引擎（责任链模式）
-- `internal/handler` - HTTP API 路由控制器
-- `pkg/translator` - 多翻译引擎（工厂模式）
-- `pkg/subtitle` - 字幕生成和格式转换
-- `pkg/cos` - 腾讯云 COS 客户端封装
+## 📁 项目结构
 
-### 前端（Next.js 15）
+仓库中的核心目录：
 
-| 组件 | 技术选型 |
-|------|---------|
-| 框架 | Next.js 15 (App Router) |
-| 语言 | TypeScript 5 |
-| UI | TailwindCSS 3 |
-| 状态管理 | Zustand |
-| HTTP 客户端 | Axios |
+- `internal/`: 后端应用代码，包括配置、路由、工作流、持久化和服务装配
+- `pkg/`: 可复用模块，包括 B 站集成、LLM 客户端、工具实现和数据模型
+- `web/`: Web 管理后台前端代码
+- `configs/`: 配置说明与示例
+- `docs/`: 部署、功能、排障和设计文档
+- `docker/`: Docker 构建、运行和部署相关文件
 
-### 外部工具（镜像内预装）
+## 🚀 本地开发
 
-- **yt-dlp** - 视频下载
-- **FFmpeg** - 音视频处理
-- **Whisper** - 语音识别（本地运行，无额外 API 费用）
-
----
-
-## 本地编译部署
-
-如需从源码构建，需要以下依赖：
-
-- Go 1.24+
-- Node.js 18+
-- yt-dlp
-- FFmpeg
-- Whisper（`pip3 install openai-whisper`）
-- MySQL 8.0+ 或 PostgreSQL 14+
+### 1. 获取代码
 
 ```bash
 git clone https://github.com/difyz9/ytb2bili.git
 cd ytb2bili
+```
 
-# 编译前后端
-make build
+### 2. 准备配置
 
-# 复制并配置文件
+```bash
 cp config.toml.example config.toml
-# 编辑 config.toml，配置数据库和 LLM
-
-# 启动服务
-./ytb2bili
 ```
 
----
+按需填写数据库、下载目录、API Key、代理等配置。常用配置入口在 [config.toml.example](/ytb2bili/config.toml.example)。
 
-## 🐛 常见问题
-
-**Q: 首次启动很慢？**
-
-首次 `docker compose up -d` 会拉取镜像（含 Whisper 模型），根据网速需要几分钟。之后启动只需几秒。
-
-**Q: 视频下载失败 / 提示地区限制？**
-
-在 `config.toml` 中配置代理：
-
-```toml
-[workflow]
-proxy_url = "http://127.0.0.1:7890"   # 替换为实际代理地址
-```
-
-**Q: MySQL 端口是 3309 还是 3306？**
-
-容器内部使用 3306，宿主机映射到 3309（避免与本地已运行的 MySQL 冲突）。`config.toml` 中连接的是容器内部端口，无需修改。
-
-**Q: 如何查看 Whisper 字幕生成进度？**
+### 3. 启动后端
 
 ```bash
-docker compose logs -f ytb2bili
+go mod download
+go run main.go
 ```
 
-**Q: 如何升级到新版本？**
+默认后端地址见 `config.toml` 中的 `[server]` 配置。
+
+### 4. 启动前端
 
 ```bash
-docker compose pull && docker compose up -d
+cd web
+npm install
+npm run dev
 ```
 
----
+### 5. 使用流程
 
-## 🤝 贡献指南
+1. 打开 Web 管理后台
+2. 登录 B 站账号
+3. 提交 YouTube 视频链接或手动上传本地视频
+4. 查看任务链执行状态与日志
+5. 在需要时重跑步骤、修改文案或手动投稿到 B 站
 
-欢迎提交 Issue 和 Pull Request！
+## 🔧 核心流程
 
-提交规范参考 [Conventional Commits](https://www.conventionalcommits.org/)：
-- `feat:` 新功能
-- `fix:` Bug 修复
-- `docs:` 文档更新
-- `refactor:` 代码重构
+### 视频处理工作流
 
----
+1. 下载视频
+2. 下载缩略图
+3. 提取音频
+4. 生成字幕
+5. 翻译字幕
+6. 生成标题、简介、标签
+7. 上传 B 站视频
+8. 上传 B 站字幕
 
-## 📄 许可证
+### 配置与运行方式
 
-本项目采用 [MIT License](LICENSE) 开源协议。
+- Docker 快速部署：见上面的 `5 分钟 Docker 部署`
+- 本地源码开发：使用 `go run main.go` 和 `cd web && npm run dev`
+- 生产构建：可使用 `make build`、`make build-linux-arm64` 等命令
 
----
+## 🛠️ 开发与构建
 
-## 🙏 致谢
+常用开发方式：
 
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) - 视频下载核心
-- [OpenAI Whisper](https://github.com/openai/whisper) - 语音识别
-- [bilibili-go-sdk](https://github.com/difyz9/bilibili-go-sdk) - B站 API 封装
-- [Gin](https://github.com/gin-gonic/gin) - Web 框架
-- [Next.js](https://nextjs.org/) - 前端框架
-- [GORM](https://gorm.io/) - ORM 框架
+```bash
+# 后端
+go run main.go
 
----
+# 前端
+cd web && npm install && npm run dev
+```
+
+常用构建命令：
+
+```bash
+make build                 # 构建生产版本（包含前端）
+make build-dev             # 仅构建后端
+make build-linux-arm64     # Linux ARM64
+make build-all             # 构建所有平台
+```
+
+如果你要扩展流程，优先查看 `internal/workflow/` 下已有的下载、转录、翻译、元数据生成、B 站上传、字幕上传等步骤实现。
+
+## ⚙️ 配置入口
+
+项目使用 `config.toml` 作为主要运行配置。开始前可先执行：
+
+```bash
+cp config.toml.example config.toml
+```
+
+最常用的配置项包括：
+
+- `server.port`：服务端口
+- `database.*`：数据库连接信息
+- `workflow.*`：下载目录、代理、ffmpeg、yt-dlp 等工作流配置
+- `api2key.*`：AI、积分、翻译、TTS 等统一后端能力
+- `updater.enabled`：自动更新开关
+
+详细说明见：
+
+- [config.toml.example](ytb2bili/config.toml.example)
+- [configs/README.md](ytb2bili/configs/README.md)
+
+
+## 🧪 验证命令
+
+```bash
+go test ./...
+go build -o ytb2bili main.go
+curl http://localhost:8096/health
+```
 
 <div align="center">
-
-没有公司支持，没有团队协作，每一次更新、每一个 bug 修复、每一次文档完善，都是在深夜和碎片时间里一点点打磨出来的。
-
-如果这个项目对你有帮助、为你节省了时间或解决了问题，欢迎通过**打赏赞助**支持开发者。
-
-一杯咖啡、一份奶茶，都是对创作者最大的认可与鼓励，也能让项目走得更远、更稳。
-
-所有收入将用于服务器、域名、工具订阅及后续功能开发，让项目保持活跃、不断进化。
-
 
 **如果这个项目对你有帮助，请点一个 ⭐Star！**
 
@@ -551,9 +235,22 @@ docker compose pull && docker compose up -d
 
 <img src="img/220421_706.png" alt="QQ群二维码" width="180"/>
 <img src="img/751763091471.jpg" alt="微信二维码" width="180"/>
-<img src="img/a3763091471.jpg" alt="打赏二维码" width="180"/>
 
 
 Made with ❤️ by [difyz9](https://github.com/difyz9)
 
 </div>
+
+## 📝 许可证
+
+[MIT License](LICENSE)
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+## 📮 联系方式
+
+- GitHub: [@difyz9](https://github.com/difyz9)
+- 项目链接: [https://github.com/difyz9/ytb2bili](https://github.com/difyz9/ytb2bili)
+
