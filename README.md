@@ -151,9 +151,12 @@ npm run dev
 
 1. 打开 Web 管理后台
 2. 登录 B 站账号
+3. 安装chrome 插件：https://api.github.com/repos/difyz9/ytb2bili_extension/releases/latest
+4. 安装插件后，打开任意 YouTube 视频页面，点击插件图标↗️提交视频链接 
+5. 在管理后台查看任务链执行状态与日志
+6. 在需要时重跑步骤、修改文案或手动投稿到 B 站
 3. 提交 YouTube 视频链接或手动上传本地视频
-4. 查看任务链执行状态与日志
-5. 在需要时重跑步骤、修改文案或手动投稿到 B 站
+
 
 ## 🔧 核心流程
 
