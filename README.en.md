@@ -1,6 +1,6 @@
 # ytb2bili
 
-[简体中文](README.zh-CN.md) | [English](README.en.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
+[简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
 
 `ytb2bili` is a workflow system for local video translation playback and YouTube-to-Bilibili publishing. It includes a web admin panel, task-chain orchestration, subtitle processing, AI copy generation, subtitle audio synthesis, synchronized A/V preview, Bilibili upload, and subtitle upload.
 
@@ -204,4 +204,3 @@ curl http://localhost:8096/health
 - GitHub: [@difyz9](https://github.com/difyz9)
 - Project: [https://github.com/difyz9/ytb2bili](https://github.com/difyz9/ytb2bili)
 - QQ group: 773066052
-
