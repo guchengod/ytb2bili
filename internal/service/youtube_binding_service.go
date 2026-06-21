@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/zolagz/ytb2bili/pkg/store/model"
+	"github.com/difyz9/ytb2bili/pkg/store/model"
 	"go.uber.org/zap"
 	"golang.org/x/oauth2"
 	"gorm.io/gorm"

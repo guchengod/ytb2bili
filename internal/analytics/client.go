@@ -8,7 +8,7 @@ import (
 	"time"
 
 	analytics "github.com/difyz9/go-analysis-client"
-	"github.com/zolagz/ytb2bili/internal/config"
+	"github.com/difyz9/ytb2bili/internal/config"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )

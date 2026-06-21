@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/zolagz/ytb2bili/pkg/store/model"
+	"github.com/difyz9/ytb2bili/pkg/store/model"
 )
 
 // Encrypt encrypts sensitive data for persistence.

@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/zolagz/ytb2bili/internal/analytics"
-	"github.com/zolagz/ytb2bili/internal/workflow"
+	"github.com/difyz9/ytb2bili/internal/analytics"
+	"github.com/difyz9/ytb2bili/internal/workflow"
 	"go.uber.org/zap"
 )
 

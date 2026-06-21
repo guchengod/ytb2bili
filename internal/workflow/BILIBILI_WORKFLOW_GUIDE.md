@@ -88,7 +88,7 @@ ctx, err := bilibiliChain.RunFromVideoPath(
 在 `main.go` 或 `bootstrap.go` 中添加：
 
 ```go
-import "github.com/zolagz/ytb2bili/internal/workflow"
+import "github.com/difyz9/ytb2bili/internal/workflow"
 
 fx.New(
     // ... 其他模块

@@ -5,10 +5,10 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/zolagz/ytb2bili/internal/config"
-	"github.com/zolagz/ytb2bili/internal/middleware"
-	"github.com/zolagz/ytb2bili/internal/service"
-	"github.com/zolagz/ytb2bili/pkg/tools"
+	"github.com/difyz9/ytb2bili/internal/config"
+	"github.com/difyz9/ytb2bili/internal/middleware"
+	"github.com/difyz9/ytb2bili/internal/service"
+	"github.com/difyz9/ytb2bili/pkg/tools"
 	"go.uber.org/zap"
 )
 

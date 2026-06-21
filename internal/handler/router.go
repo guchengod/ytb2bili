@@ -5,9 +5,9 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/zolagz/ytb2bili/internal/config"
-	"github.com/zolagz/ytb2bili/internal/middleware"
-	"github.com/zolagz/ytb2bili/internal/server"
+	"github.com/difyz9/ytb2bili/internal/config"
+	"github.com/difyz9/ytb2bili/internal/middleware"
+	"github.com/difyz9/ytb2bili/internal/server"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )

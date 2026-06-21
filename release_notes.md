@@ -53,7 +53,7 @@ winget install ffmpeg
 
 ## 2. 下载安装包
 
-前往 [GitHub Releases](https://github.com/zolagz/ytb2bili/releases/latest) 下载对应平台的二进制文件：
+前往 [GitHub Releases](https://github.com/difyz9/ytb2bili/releases/latest) 下载对应平台的二进制文件：
 
 | 平台 | 架构 | 文件名 |
 |------|------|--------|
@@ -68,7 +68,7 @@ winget install ffmpeg
 # 以 Linux AMD64 为例，替换版本号和文件名
 VERSION=v0.0.18
 curl -L -o ytb2bili \
-  "https://github.com/zolagz/ytb2bili/releases/download/${VERSION}/ytb2bili-linux-amd64"
+  "https://github.com/difyz9/ytb2bili/releases/download/${VERSION}/ytb2bili-linux-amd64"
 
 # 授予执行权限
 chmod +x ytb2bili
@@ -207,7 +207,7 @@ llm_translation_target_lang = "zh-Hans"
 
 ### 方式一：手动替换二进制
 
-1. 从 [Releases 页面](https://github.com/zolagz/ytb2bili/releases/latest) 下载新版本
+1. 从 [Releases 页面](https://github.com/difyz9/ytb2bili/releases/latest) 下载新版本
 2. 停止旧进程（`Ctrl+C` 或 `kill`）
 3. 替换可执行文件，重新启动
 

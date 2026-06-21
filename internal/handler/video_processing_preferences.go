@@ -6,12 +6,12 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/zolagz/ytb2bili/internal/config"
-	"github.com/zolagz/ytb2bili/internal/service"
-	"github.com/zolagz/ytb2bili/internal/workflow"
-	"github.com/zolagz/ytb2bili/pkg/llm"
-	"github.com/zolagz/ytb2bili/pkg/utils"
-	storemodel "github.com/zolagz/ytb2bili/pkg/store/model"
+	"github.com/difyz9/ytb2bili/internal/config"
+	"github.com/difyz9/ytb2bili/internal/service"
+	"github.com/difyz9/ytb2bili/internal/workflow"
+	"github.com/difyz9/ytb2bili/pkg/llm"
+	"github.com/difyz9/ytb2bili/pkg/utils"
+	storemodel "github.com/difyz9/ytb2bili/pkg/store/model"
 )
 
 func ResolveVideoTranslationConfig(

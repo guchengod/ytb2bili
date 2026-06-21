@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/zolagz/ytb2bili/internal/config"
-	"github.com/zolagz/ytb2bili/internal/service"
-	"github.com/zolagz/ytb2bili/pkg/store/model"
+	"github.com/difyz9/ytb2bili/internal/config"
+	"github.com/difyz9/ytb2bili/internal/service"
+	"github.com/difyz9/ytb2bili/pkg/store/model"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 )

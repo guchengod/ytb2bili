@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/zolagz/ytb2bili/internal/config"
-	"github.com/zolagz/ytb2bili/internal/middleware"
+	"github.com/difyz9/ytb2bili/internal/config"
+	"github.com/difyz9/ytb2bili/internal/middleware"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )

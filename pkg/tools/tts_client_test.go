@@ -3,7 +3,7 @@ package tools
 import (
 	"testing"
 
-	appconfig "github.com/zolagz/ytb2bili/internal/config"
+	appconfig "github.com/difyz9/ytb2bili/internal/config"
 	"go.uber.org/zap"
 )
 

@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	biliaccount "github.com/zolagz/ytb2bili/pkg/bilibili"
-	"github.com/zolagz/ytb2bili/pkg/store/model"
+	biliaccount "github.com/difyz9/ytb2bili/pkg/bilibili"
+	"github.com/difyz9/ytb2bili/pkg/store/model"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zaptest"
 	"gorm.io/driver/sqlite"

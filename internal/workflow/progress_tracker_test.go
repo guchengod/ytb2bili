@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	storemodel "github.com/zolagz/ytb2bili/pkg/store/model"
+	storemodel "github.com/difyz9/ytb2bili/pkg/store/model"
 	"go.uber.org/zap"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"

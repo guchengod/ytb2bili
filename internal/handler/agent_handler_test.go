@@ -4,9 +4,9 @@ import (
 	"context"
 	"testing"
 
-	"github.com/zolagz/ytb2bili/internal/config"
-	agentcfg "github.com/zolagz/ytb2bili/pkg/agent"
-	"github.com/zolagz/ytb2bili/pkg/store/model"
+	"github.com/difyz9/ytb2bili/internal/config"
+	agentcfg "github.com/difyz9/ytb2bili/pkg/agent"
+	"github.com/difyz9/ytb2bili/pkg/store/model"
 	"go.uber.org/zap"
 )
 

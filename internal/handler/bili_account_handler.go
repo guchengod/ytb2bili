@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strconv"
 
-	biliaccount "github.com/zolagz/ytb2bili/pkg/bilibili"
-	"github.com/zolagz/ytb2bili/pkg/store/model"
+	biliaccount "github.com/difyz9/ytb2bili/pkg/bilibili"
+	"github.com/difyz9/ytb2bili/pkg/store/model"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )

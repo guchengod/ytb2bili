@@ -9,8 +9,8 @@ import (
 
 	"github.com/cloudwego/eino/components/tool"
 	"github.com/cloudwego/eino/schema"
-	"github.com/zolagz/ytb2bili/pkg/llm"
-	storemodel "github.com/zolagz/ytb2bili/pkg/store/model"
+	"github.com/difyz9/ytb2bili/pkg/llm"
+	storemodel "github.com/difyz9/ytb2bili/pkg/store/model"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 )

@@ -3,8 +3,8 @@ package tools
 import (
 	"testing"
 
-	"github.com/zolagz/ytb2bili/pkg/llm"
-	storemodel "github.com/zolagz/ytb2bili/pkg/store/model"
+	"github.com/difyz9/ytb2bili/pkg/llm"
+	storemodel "github.com/difyz9/ytb2bili/pkg/store/model"
 )
 
 func TestApplyStoredTranslationSettingsLoadsUserTranslationSettings(t *testing.T) {

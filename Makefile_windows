@@ -11,7 +11,7 @@ ifeq ($(VERSION),)
 VERSION := 1.0.0
 endif
 
-LDFLAGS := -ldflags=-X=github.com/zolagz/ytb2bili/internal/updater.Version=$(VERSION)
+LDFLAGS := -ldflags=-X=github.com/difyz9/ytb2bili/internal/updater.Version=$(VERSION)
 BINARY_NAME := ytb2bili
 
 ifeq ($(OS),Windows_NT)

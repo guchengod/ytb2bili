@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/zolagz/ytb2bili/pkg/store/model"
+	"github.com/difyz9/ytb2bili/pkg/store/model"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 )

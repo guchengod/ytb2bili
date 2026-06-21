@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/zolagz/ytb2bili/internal/config"
+	"github.com/difyz9/ytb2bili/internal/config"
 )
 
 // TranslatorConfig 配置

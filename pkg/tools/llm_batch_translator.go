@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/zolagz/ytb2bili/pkg/llm"
-	storemodel "github.com/zolagz/ytb2bili/pkg/store/model"
+	"github.com/difyz9/ytb2bili/pkg/llm"
+	storemodel "github.com/difyz9/ytb2bili/pkg/store/model"
 	"go.uber.org/zap"
 )
 

@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/zolagz/ytb2bili/internal/config"
-	"github.com/zolagz/ytb2bili/pkg/llm"
-	"github.com/zolagz/ytb2bili/pkg/tools"
+	"github.com/difyz9/ytb2bili/internal/config"
+	"github.com/difyz9/ytb2bili/pkg/llm"
+	"github.com/difyz9/ytb2bili/pkg/tools"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )

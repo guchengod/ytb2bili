@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/zolagz/ytb2bili/internal/config"
+	"github.com/difyz9/ytb2bili/internal/config"
 	"go.uber.org/zap"
 )
 

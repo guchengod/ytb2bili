@@ -5,9 +5,9 @@ import (
 	"log"
 	"time"
 
-	_ "github.com/zolagz/ytb2bili/docs" // Swagger docs
-	"github.com/zolagz/ytb2bili/internal/bootstrap"
-	"github.com/zolagz/ytb2bili/internal/handler"
+	_ "github.com/difyz9/ytb2bili/docs" // Swagger docs
+	"github.com/difyz9/ytb2bili/internal/bootstrap"
+	"github.com/difyz9/ytb2bili/internal/handler"
 )
 
 // 构建信息（通过 -ldflags 注入）

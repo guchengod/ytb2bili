@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/zolagz/ytb2bili/internal/service"
-	storemodel "github.com/zolagz/ytb2bili/pkg/store/model"
-	"github.com/zolagz/ytb2bili/pkg/tools"
+	"github.com/difyz9/ytb2bili/internal/service"
+	storemodel "github.com/difyz9/ytb2bili/pkg/store/model"
+	"github.com/difyz9/ytb2bili/pkg/tools"
 	"go.uber.org/zap"
 )
 

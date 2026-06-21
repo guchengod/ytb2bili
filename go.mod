@@ -1,4 +1,4 @@
-module github.com/zolagz/ytb2bili
+module github.com/difyz9/ytb2bili
 
 go 1.24.4
 

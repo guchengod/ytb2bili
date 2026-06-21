@@ -2,7 +2,7 @@
 
 # 版本号（从 git tag 获取，或使用默认值）
 VERSION := $(shell git describe --tags --always --dirty 2>/dev/null || echo "1.0.0")
-LDFLAGS := -ldflags "-X github.com/zolagz/ytb2bili/internal/updater.Version=$(VERSION)"
+LDFLAGS := -ldflags "-X github.com/difyz9/ytb2bili/internal/updater.Version=$(VERSION)"
 BINARY_NAME := ytb2bili
 
 # ==============================================

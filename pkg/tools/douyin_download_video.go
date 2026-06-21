@@ -9,8 +9,8 @@ import (
 	"github.com/bytedance/sonic"
 	"github.com/cloudwego/eino/components/tool"
 	"github.com/cloudwego/eino/schema"
-	"github.com/zolagz/ytb2bili/internal/config"
-	clientpkg "github.com/zolagz/ytb2bili/pkg/tikhub"
+	"github.com/difyz9/ytb2bili/internal/config"
+	clientpkg "github.com/difyz9/ytb2bili/pkg/tikhub"
 	"go.uber.org/zap"
 )
 

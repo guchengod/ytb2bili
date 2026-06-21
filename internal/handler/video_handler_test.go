@@ -3,7 +3,7 @@ package handler
 import (
 	"testing"
 
-	"github.com/zolagz/ytb2bili/internal/workflow"
+	"github.com/difyz9/ytb2bili/internal/workflow"
 )
 
 func TestBuildResumeVideoContextReturnsNilWithoutOverrides(t *testing.T) {

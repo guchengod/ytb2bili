@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"github.com/zolagz/ytb2bili/internal/config"
-	biliaccount "github.com/zolagz/ytb2bili/pkg/bilibili"
+	"github.com/difyz9/ytb2bili/internal/config"
+	biliaccount "github.com/difyz9/ytb2bili/pkg/bilibili"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 	"gorm.io/gorm"

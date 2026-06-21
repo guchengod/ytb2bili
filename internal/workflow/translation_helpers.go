@@ -3,7 +3,7 @@ package workflow
 import (
 	"strings"
 
-	"github.com/zolagz/ytb2bili/pkg/tools"
+	"github.com/difyz9/ytb2bili/pkg/tools"
 )
 
 type transcriptTextSegment struct {

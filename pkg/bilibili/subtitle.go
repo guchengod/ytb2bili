@@ -8,7 +8,7 @@ import (
 	"time"
 
 	bilisdk "github.com/difyz9/bilibili-go-sdk/bilibili"
-	"github.com/zolagz/ytb2bili/pkg/store/model"
+	"github.com/difyz9/ytb2bili/pkg/store/model"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 )

@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/zolagz/ytb2bili/pkg/store/model"
+	"github.com/difyz9/ytb2bili/pkg/store/model"
 	"go.uber.org/zap/zaptest"
 )
 

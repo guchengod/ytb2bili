@@ -18,7 +18,7 @@
 //
 // Usage:
 //
-//	import "github.com/zolagz/ytb2bili/pkg/tools"
+//	import "github.com/difyz9/ytb2bili/pkg/tools"
 //
 //	// Create image prompt tool
 //	promptTool := tools.NewGenerateImagePromptTool(llmClient, logger)

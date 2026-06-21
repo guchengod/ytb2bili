@@ -1,6 +1,6 @@
 package agent
 
-import "github.com/zolagz/ytb2bili/pkg/llm"
+import "github.com/difyz9/ytb2bili/pkg/llm"
 
 // Config holds agent configuration. Matches the [agent] section of config.toml (unchanged schema).
 type Config struct {

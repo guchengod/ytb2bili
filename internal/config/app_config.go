@@ -8,8 +8,8 @@ import (
 	"strings"
 
 	"github.com/BurntSushi/toml"
-	agent "github.com/zolagz/ytb2bili/pkg/agent"
-	"github.com/zolagz/ytb2bili/pkg/llm"
+	agent "github.com/difyz9/ytb2bili/pkg/agent"
+	"github.com/difyz9/ytb2bili/pkg/llm"
 )
 
 // ── ProviderConfig ───────────────────────────────────────────────────────────

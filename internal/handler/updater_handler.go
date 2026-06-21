@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/zolagz/ytb2bili/internal/updater"
+	"github.com/difyz9/ytb2bili/internal/updater"
 	"go.uber.org/zap"
 )
 

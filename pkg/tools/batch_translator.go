@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/zolagz/ytb2bili/pkg/llm"
+	"github.com/difyz9/ytb2bili/pkg/llm"
 	"go.uber.org/zap"
 )
 

@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/BurntSushi/toml"
-	agent "github.com/zolagz/ytb2bili/pkg/agent"
+	agent "github.com/difyz9/ytb2bili/pkg/agent"
 )
 
 const defaultConfigFile = "config.toml"

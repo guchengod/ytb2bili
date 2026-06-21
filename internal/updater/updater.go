@@ -22,7 +22,7 @@ import (
 	"time"
 
 	"github.com/minio/selfupdate"
-	"github.com/zolagz/ytb2bili/internal/config"
+	"github.com/difyz9/ytb2bili/internal/config"
 	"go.uber.org/zap"
 	"golang.org/x/mod/semver"
 )
@@ -35,7 +35,7 @@ const (
 	githubAPIURL = "https://api.github.com/repos/difyz9/ytb2bili/releases/latest"
 )
 
-// Version 由构建参数注入，示例：-ldflags "-X github.com/zolagz/ytb2bili/internal/updater.Version=v1.2.3"
+// Version 由构建参数注入，示例：-ldflags "-X github.com/difyz9/ytb2bili/internal/updater.Version=v1.2.3"
 var Version = ""
 
 // GitHubRelease GitHub Release API 响应结构

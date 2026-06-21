@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/zolagz/ytb2bili/internal/config"
+	"github.com/difyz9/ytb2bili/internal/config"
 	"go.uber.org/fx"
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/postgres"

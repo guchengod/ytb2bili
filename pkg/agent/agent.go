@@ -9,7 +9,7 @@ import (
 	"github.com/cloudwego/eino/adk"
 	"github.com/cloudwego/eino/components/tool"
 	"github.com/cloudwego/eino/compose"
-	"github.com/zolagz/ytb2bili/pkg/llm"
+	"github.com/difyz9/ytb2bili/pkg/llm"
 	"go.uber.org/zap"
 )
 

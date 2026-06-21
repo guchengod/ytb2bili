@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/zolagz/ytb2bili/internal/config"
-	"github.com/zolagz/ytb2bili/internal/service"
-	"github.com/zolagz/ytb2bili/pkg/llm"
+	"github.com/difyz9/ytb2bili/internal/config"
+	"github.com/difyz9/ytb2bili/internal/service"
+	"github.com/difyz9/ytb2bili/pkg/llm"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )

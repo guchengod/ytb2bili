@@ -15,11 +15,11 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/zolagz/ytb2bili/internal/config"
-	"github.com/zolagz/ytb2bili/internal/service"
-	"github.com/zolagz/ytb2bili/pkg/llm"
-	storemodel "github.com/zolagz/ytb2bili/pkg/store/model"
-	"github.com/zolagz/ytb2bili/pkg/tools"
+	"github.com/difyz9/ytb2bili/internal/config"
+	"github.com/difyz9/ytb2bili/internal/service"
+	"github.com/difyz9/ytb2bili/pkg/llm"
+	storemodel "github.com/difyz9/ytb2bili/pkg/store/model"
+	"github.com/difyz9/ytb2bili/pkg/tools"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
